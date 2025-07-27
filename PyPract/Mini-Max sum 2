@@ -1,0 +1,41 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'miniMaxSum' function below.
+#
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+def miniMaxSum(arr):
+    # Write your code here
+    # Instead of sorting the whole list, we can simply place the smallest element at the first index and the largest element at the last index, and let the rest of the elements in the middle be in any order. For maxSum we exclude the 1st element and take the sum, and for minSum we exclude the last element.
+    n = len(arr)
+    cur_min_indx = 0
+    for j in range(n):
+        if(arr[j]<arr[cur_min_indx]):
+            cur_min_indx = j
+    arr[0], arr[cur_min_indx] = arr[cur_min_indx], arr[0]
+    #print(arr)
+    
+    cur_max_indx = n-1
+    for j in range(n):
+        if(arr[j]>arr[cur_max_indx]):
+            cur_max_indx = j
+    arr[n-1], arr[cur_max_indx] = arr[cur_max_indx], arr[n-1]
+    #print(arr)
+    
+    maxSum = sum(arr[1:])
+    minSum = sum(arr[:n-1])
+    print(minSum, maxSum)
+
+if __name__ == '__main__':
+
+    arr = list(map(int, input().rstrip().split()))
+
+    miniMaxSum(arr)
