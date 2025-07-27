@@ -1,0 +1,41 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'miniMaxSum' function below.
+#
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+def miniMaxSum(arr):
+    # Write your code here
+    n = len(arr)                            ##Performing Selection Sort
+    for i in range(n-1):
+        cur_min_indx = i
+        for j in range(i+1,n):
+            if(arr[j]<arr[cur_min_indx]):
+                cur_min_indx = j
+        arr[i], arr[cur_min_indx] = arr[cur_min_indx], arr[i]
+    #print(arr)
+    #arr = sorted(arr) #Tim sort, inbuilt python function, a combination of merge sort and insertion sort. We can simply use this instead of the whole Selection sort portion above.
+    minSum = 0
+    maxSum = 0
+    for i in range(n-1):
+        minSum = minSum + arr[i]
+    for i in range(1,n):
+        maxSum = maxSum + arr[i]
+    #Instead of above 2 for loops to calc minsum & maxsum, we can simply use slicing:
+    #minSum = sum(arr[0:n-1])
+    #maxSum = sum(arr[1:n])
+    print(minSum, maxSum)
+
+if __name__ == '__main__':
+
+    arr = list(map(int, input().rstrip().split()))
+
+    miniMaxSum(arr)
