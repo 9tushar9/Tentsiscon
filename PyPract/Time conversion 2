@@ -1,0 +1,42 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    if("A" in s):
+        if(s[:2] == "12"):
+            s = s.replace(s[:2],"00",1)
+    if("P" in s):
+        if(s[:2] != "12"):
+            s = s.replace(s[:2],str(int(s[:2])+12),1)
+    #a = list(s) #convert string to list, so that we can remove "AM/PM"
+    #a.remove(a[len(a)-1]) #remove M from the list
+    #a.remove(a[len(a)-1]) #remove P or A from the list
+    #s = ''.join(a) #convert list back to string.(Using the original variable itself)
+    s = s[:-2] #Instead of doing the above (conversion to-and-fro and using the function 'list.remove'), we can simply do this. PAY ATTENTION TO NEGATIVE INDICES WHILE SLICING! THEY ARE USEFUL!
+    return(s)        
+        
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
