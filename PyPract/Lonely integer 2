@@ -16,7 +16,9 @@ import sys
 def lonelyinteger(a):
     result = 0
     for num in a:
-        result ^= num
+        result ^= num ## Bitwise XOR operator.
+        # Property: any number ^ 0 = same number
+        # and       any number ^ same number = 0.
     return result
 
 if __name__ == '__main__':
