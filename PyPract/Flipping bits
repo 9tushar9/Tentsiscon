@@ -1,0 +1,56 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'flippingBits' function below.
+#
+# The function is expected to return a LONG_INTEGER.
+# The function accepts LONG_INTEGER n as parameter.
+#
+
+def flippingBits(n):
+    # Write your code here
+    k = ""
+    while(n>0): #Converting decimal to binary
+    #Can also do [ bin(decimal_num).replace("0b", "") ] instead of this WHILE loop.
+        k = str(n%2) + k #Note that it is not [k + str(n%2)].
+        n = n//2
+    apnd = 32 - len(k)
+    z = ""
+    for i in range(apnd): #adding remaining of the 32 bits.
+        z = z + "0"
+    k = z + k
+    k = list(k)
+    #print(k)
+    sums = 0
+    for i in range(len(k)):
+        k[i] = int(k[i])
+        if(k[i]==0):
+            #k[i] = 1 #Line a
+            sums = sums + 2**(31-i)
+            #print(sums)
+        #else: #Line b
+        #    k[i] = 0 #Line c
+    #print(k)
+    #Lines a,b,c are not required as we just need "sums", not k. Thus, commented.
+    return sums
+            
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input().strip())
+
+    for q_itr in range(q):
+        n = int(input().strip())
+
+        result = flippingBits(n)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
