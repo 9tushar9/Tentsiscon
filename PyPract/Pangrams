@@ -1,0 +1,41 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'pangrams' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def pangrams(s):
+    # Write your code here
+    s = s.lower()
+    s1 = set(s.replace(" ",""))
+    s1 = sorted(s1)
+    s1 = ''.join(str(item) for item in s1) #converting the set to a string
+    #print(s1)
+    s2 = ''
+    for i in range(ord('a'), ord('z') + 1): #ord converts input to its ASCII value
+        s2 = s2 + chr(i) #chr converts ASCII value to its character
+    #print(s2)
+    if s2==s1:
+        return("pangram")
+    else:
+        return("not pangram")
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = pangrams(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
