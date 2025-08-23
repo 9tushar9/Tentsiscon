@@ -1,0 +1,30 @@
+def findZigZagSequence(a, n):
+    a.sort()
+    mid = int((n + 1)/2) - 1 #mid = k-1
+    a[mid], a[n-1] = a[n-1], a[mid] #exchanging the last element and the mid element, because to ensure zigzag sequence, largest element has to be in the centre and
+                                    #mid element has to be at the last as 2nd half of the sequence is in descending order.
+    #Since we have to find the lexicographically smallest zigzag sequence, the 1st half of the sorted sequence remains unchanged.
+    #Elements after middle element and before last element need to be exchanged now, to make them descending. Thus,:
+
+    st = mid + 1
+    ed = n - 2 #
+    while(st <= ed):
+        a[st], a[ed] = a[ed], a[st]
+        st = st + 1
+        ed = ed - 1 #
+
+    for i in range (n):
+        if i == n-1:
+            print(a[i])
+        else:
+            print(a[i], end = ' ')
+    return
+
+test_cases = int(input())
+for cs in range (test_cases):
+    n = int(input())
+    a = list(map(int, input().split()))
+    findZigZagSequence(a, n)
+
+
+
