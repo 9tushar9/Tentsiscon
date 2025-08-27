@@ -1,0 +1,71 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'towerBreakers' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER n
+#  2. INTEGER m
+#
+
+def towerBreakers(n, m):
+    # Write your code here
+    #a=[] # list containing current heights of all towers.
+    #d=[] # list containing all even-divisors of m.
+    #c =0 # chance counter.
+    #for i in range(1,n+1):
+    #    a.append(m)
+    #    if(i%m==0):
+    #        d.append(i)
+    #d.pop() # since players can't skip their turn.
+    #while(a[n-1]>1):
+        #if(n%2!=0):
+        #    a[0+c] = d[0+c] # d[0]=1 always.
+        #if(n%2!=0):
+        #c = c+1
+    ########################################################
+    ###################################################
+    ##########################################
+    ###################################
+    #########################
+    ############
+    #####
+    #
+    #Weirdass question
+    #Since the players always move optimally, case-handling won't work.
+    #Because, there is always just one answer for each m & n combination, even though there are so many possible cases for each combination.
+    #Some cases though, are: if n is prime & m is even, P2 always wins.
+    #if n is prime & m is odd, P1 always wins.
+    #if n is composite, too many cases.
+    #BUT, SOLUTION LOGIC:#################################################
+    #If n is even, since P1 moves first, P2 can always copy the move P1 makes irrespective, which means that P1 will always run out of moves first (last move will always be made by P2). Thus, P2 will always win.
+    #If n is odd, P1 will always reduce the 1st tower to "1" (as 1 is a even-divisor for all numbers and also the shortest length possible for a tower). After that, even number of towers are left but with P2 making the next first move. (similar to 1st case). Thus, P1 will always win.
+    if(n%2==0 or m==1):
+        return 2
+    else:
+        return 1
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        first_multiple_input = input().rstrip().split()
+
+        n = int(first_multiple_input[0])
+
+        m = int(first_multiple_input[1])
+
+        result = towerBreakers(n, m)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
