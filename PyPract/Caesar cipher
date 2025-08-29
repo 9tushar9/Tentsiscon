@@ -1,0 +1,57 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'caesarCipher' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts following parameters:
+#  1. STRING s
+#  2. INTEGER k
+#
+
+def caesarCipher(s, k):
+    # Write your code here
+    a1 = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxy"
+    a2 = [] #storing the new(caesar-cyphered) alphabet (in lowercase).
+    k2 = k
+    if(k>=26):
+        k2 = k%26
+    for i in range(26):
+        a2.append(a1[i+k2])
+    #print(a2)#
+    l = "abcdefghijklmnopqrstuvwxyz" #or a1[:26]
+    u = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" #or l.upper()
+    cc = []
+    for i in s:
+        if(i in l):
+            index = l.index(i) #"index" is the position of the characters in s, in a2.
+            cc.append(a2[index])
+        elif(i in u):
+            index = u.index(i)
+            cc.append(a2[index].upper())
+        else:
+            cc.append(i) #for keeping hyphen and other non-alphabet characters as it is.
+    #print(cc)#
+    ccs = "".join(cc) # convert list to string
+    return ccs
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    s = input()
+
+    k = int(input().strip())
+
+    result = caesarCipher(s, k)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
