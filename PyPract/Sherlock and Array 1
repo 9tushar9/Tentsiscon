@@ -1,0 +1,46 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'balancedSums' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+def balancedSums(arr):
+    # Write your code here
+    ########FOLLOWING CODE MIGHT BE TOO SLOW FOR VERY LARGE ARRAYS#########
+    
+    s = sum(arr) ##inbuilt function to sum all elements of a list.
+    if(len(arr)<=1):
+        return('YES')
+        ##Since "return" makes you exit the function, below code will not run if this line is reached. So no need to put below code in "else".
+    for i in range(len(arr)):
+        sl = sum(arr[:i]) #sum of elements to the left of current element.
+        sr = s-arr[i]-sl  #sum of remaining elements minus current element. (WHICH WILL ALSO BE the sum of elements to the right of current element.)
+        if(sl == sr):
+            return('YES') #Since "return" makes you exit the function, no need of "break". For same reason, no need of putting below code in "else".
+
+    return('NO')
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    T = int(input().strip())
+
+    for T_itr in range(T):
+        n = int(input().strip())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        result = balancedSums(arr)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
