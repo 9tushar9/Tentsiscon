@@ -1,0 +1,51 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'superDigit' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. STRING n
+#  2. INTEGER k
+#
+
+def superDigit(n, k):
+    # Write your code here
+    #n = int(n)                     # n's data type is string. since we want to traverse the digits of n, a simple for loop is easier when n is a string.
+    #x = n
+    #d = 1 # number of digits in n
+    s = 0
+    #r = 0
+    #while(n > 0):                  # If n is converted to int, we can use something like this while loop to achieve the same thing.
+    #    r = n%10
+    #    n = n//10
+    #    d = d+1
+    #    s = s+r
+    for i in n:
+        s = s + int(i)
+    s_p = s * k
+    if(s_p<=9):
+        return s_p
+    else:
+        return superDigit(str(s_p), 1)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    first_multiple_input = input().rstrip().split()
+
+    n = first_multiple_input[0]
+
+    k = int(first_multiple_input[1])
+
+    result = superDigit(n, k)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
