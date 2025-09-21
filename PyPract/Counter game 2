@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'counterGame' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts LONG_INTEGER n as parameter.
+#
+
+c = 0
+def counterGame(n):
+    # Write your code here
+    # USING RECURSION TO SOLVE THIS PROBLEM.
+    global c
+    x = math.log(n,2)
+    if(n & (n - 1) == 0): #checking whether x has decimal part or not. Doing x%1==0 is not recommended as it might give wrong results due to approximations.
+        n = n//2
+        c = c+1
+    else:
+        n = n - (2**math.floor(x))
+        c = c+1
+        #print(y)
+    if(n==1):
+        if(c%2==0):
+            return "Richard"
+        else:
+            return "Louise"
+    else:
+        return counterGame(n)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        n = int(input().strip())
+
+        c = 0 # Resetting c value before every test case.
+        result = counterGame(n)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
