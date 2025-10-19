@@ -1,0 +1,6 @@
+/*
+Enter your query here.
+*//* In DB2, "%" operator doesn't work. Use "MOD" function instead->
+SELECT DISTINCT CITY FROM STATION WHERE MOD(ID,2)=0;.
+In MYSQL, we can do the following: */
+SELECT DISTINCT CITY FROM STATION WHERE ID%2=0;
