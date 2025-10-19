@@ -1,0 +1,8 @@
+/*
+Enter your query here.
+*/
+Select city, length(city) from station order by length(city), city limit 1;
+/* [order by length(city), city] sorts the rows according to length of city names first, and then further sorts the output based on alphabetical order of city names.*/
+Select city, length(city) from station order by length(city) desc, city limit 1;
+/*for the longest city name, we sort the length of city names in descending order instead of ascending. For the alphabetical order, it remains ascending.*/
+/*Limit 1 ensures that only the city with longest name and that comes earlier in alphabetical order is outputted.*/
